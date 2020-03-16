@@ -11,15 +11,20 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var locationLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
     @IBOutlet var occupantCountLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        readData()
-//        print(uniqueOccupantData(file: "occupancy_data"))
-//        print("averge height (mm) : ", occupantAverageHeight(file: "occupancy_data"))
+        updateUI()
+        
+    }
+    
+    func updateUI() {
+        let occupantCount: Int = uniqueOccupantData(file: "occupancy_data").count
+        let averageHeight = occupantAverageHeight(file: "occupancy_data")
+        occupantCountLabel.text = "occupant count: \(occupantCount)"
+        locationLabel.text = "average height of occupants: \(averageHeight) mm"
     }
     
     func readData(file fileName: String) -> [[String]] {
@@ -70,6 +75,18 @@ class ViewController: UIViewController {
             heightSum += Int(row[7])!
         }
         return heightSum / uniqueOccupants.count
+    }
+    
+    func timeParsedData(time: String) -> Date {
+        var toReturn: [[String]] = []
+        let currTime = currentTime()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "HH:mm:ssZ"
+        let date = dateFormatter.date(from: time)
+    
+        return date!
     }
     
     func currentTime() -> String {
