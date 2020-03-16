@@ -13,7 +13,7 @@
 		A23EDF00241981420018258C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EDEFE241981420018258C /* Main.storyboard */; };
 		A23EDF02241981440018258C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23EDF01241981440018258C /* Assets.xcassets */; };
 		A23EDF05241981440018258C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EDF03241981440018258C /* LaunchScreen.storyboard */; };
-		A23EDF0D241982010018258C /* OccupantInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EDF0C241982010018258C /* OccupantInfo.swift */; };
+		A29181E8241F36DE00B2E85F /* occupancy_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = A29181E7241F36DE00B2E85F /* occupancy_data.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		A23EDF01241981440018258C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A23EDF04241981440018258C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23EDF06241981440018258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A23EDF0C241982010018258C /* OccupantInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantInfo.swift; sourceTree = "<group>"; };
+		A29181E7241F36DE00B2E85F /* occupancy_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = occupancy_data.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,6 @@
 		A23EDEF7241981420018258C /* CrowdSafe */ = {
 			isa = PBXGroup;
 			children = (
-				A23EDF0E241982070018258C /* Model */,
 				A23EDEF8241981420018258C /* AppDelegate.swift */,
 				A23EDEFA241981420018258C /* SceneDelegate.swift */,
 				A23EDEFC241981420018258C /* ViewController.swift */,
@@ -66,16 +65,9 @@
 				A23EDF01241981440018258C /* Assets.xcassets */,
 				A23EDF03241981440018258C /* LaunchScreen.storyboard */,
 				A23EDF06241981440018258C /* Info.plist */,
+				A29181E7241F36DE00B2E85F /* occupancy_data.csv */,
 			);
 			path = CrowdSafe;
-			sourceTree = "<group>";
-		};
-		A23EDF0E241982070018258C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A23EDF0C241982010018258C /* OccupantInfo.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +130,7 @@
 			files = (
 				A23EDF05241981440018258C /* LaunchScreen.storyboard in Resources */,
 				A23EDF02241981440018258C /* Assets.xcassets in Resources */,
+				A29181E8241F36DE00B2E85F /* occupancy_data.csv in Resources */,
 				A23EDF00241981420018258C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +144,6 @@
 			files = (
 				A23EDEFD241981420018258C /* ViewController.swift in Sources */,
 				A23EDEF9241981420018258C /* AppDelegate.swift in Sources */,
-				A23EDF0D241982010018258C /* OccupantInfo.swift in Sources */,
 				A23EDEFB241981420018258C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
