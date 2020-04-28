@@ -19,10 +19,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var topRight: UIButton!
     @IBOutlet weak var bottomRight: UIButton!
     
-    
     @IBOutlet weak var mostDense: UIButton!
     @IBOutlet weak var mildlyDense: UIButton!
     @IBOutlet weak var leastDense: UIButton!
+    
+    var topLeftCount = 0
+    var bottomLeftCount = 0
+    var topRightCount = 0
+    var bottomRightCount = 0
     
     
     override func viewDidLoad() {
@@ -35,10 +39,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         timeLabel.text = currentTimeString()
         occupantCountLabel.text = "Occupant count: \(uniqueOccData.count)"
         occupantHeightLabel.text = "Avg. occupant height: \(averageOccHeight)mm"
-
-//        basicUISetup()
+        
+        quadrantDensity(data: uniqueOccData)
+        basicUISetup()
         
     }
+    
+    @IBAction func topLeftPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "\(topLeftCount) occupants", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func topRightPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "\(topRightCount) occupants", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func bottomLeftPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "\(bottomLeftCount) occupants", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func bottomRightPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "\(bottomRightCount) occupants", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     func basicUISetup()  {
         
@@ -51,11 +81,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         mostDense.layer.cornerRadius = mostDense.frame.height / 2
         mildlyDense.layer.cornerRadius = mildlyDense.frame.height / 2
         leastDense.layer.cornerRadius = leastDense.frame.height / 2
-        
-        topLeft.layer.backgroundColor = UIColor.red.cgColor
-        topRight.layer.backgroundColor = UIColor.yellow.cgColor
-        bottomLeft.layer.backgroundColor = UIColor.green.cgColor
-        bottomRight.layer.backgroundColor = UIColor.green.cgColor
         
     }
     
@@ -110,18 +135,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         switch today {
         case 0:
             data = readCsvData(file: "day_zero_final")
+            print("DAY 0")
         case 1:
             data = readCsvData(file: "day_one_final")
+            print("DAY 1")
         case 2:
             data = readCsvData(file: "day_two_final")
+            print("DAY 2")
         case 3:
             data = readCsvData(file: "day_three_final")
+            print("DAY 3")
         case 4:
             data = readCsvData(file: "day_four_final")
+            print("DAY 4")
         case 5:
             data = readCsvData(file: "day_five_final")
+            print("DAY 5")
         case 6:
             data = readCsvData(file: "day_six_final")
+            print("DAY 6")
         default:
             break
         }
@@ -143,9 +175,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let currentHour = calendar.component(.hour, from: date)
             let currentMinute = calendar.component(.minute, from: date)
             
+            // Add hour check here
             if minuteSubstring == String(currentMinute) {
                 toReturn.append(data[counter])
-                print("TIME ADDED: \(timeSubstring)")
             }
             
             counter += 1
@@ -173,7 +205,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         var heightSum = 0
         
         for row in data {
-            heightSum += Int(row[7])!
+            heightSum += Int(row[8])!
         }
         return heightSum / data.count
     }
@@ -190,9 +222,88 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             hour = hour - 12
             return "\(hour):\(minutes) pm"
         }
-    
     }
+    
+    func quadrantDensity(data: [[String]]) {
+        
+        var upperLeft: Float = 0.0
+        var upperRight: Float = 0.0
+        var lowerLeft: Float = 0.0
+        var lowerRight: Float = 0.0
+        
+        for each in data {
+            
+            let x = Float(each[5])!
+            let y = Float(each[6])!
 
+            print(x)
+            print(y)
+            
+            //topLeft
+            if x < 250 && y < 155 {
+                upperLeft += 1
+                self.topLeftCount += 1
+            }
+            //bottomLeft
+            else if x < 250 && y >= 155 {
+                lowerLeft += 1
+                self.bottomLeftCount += 1
+            }
+            //topRight
+            else if x >= 250 && y < 155 {
+                upperRight += 1
+                self.topRightCount += 1
+            }
+            //bottomRight
+            else if x >= 250 && y >= 155 {
+                lowerRight += 1
+                self.bottomRightCount += 1
+            }
+        }
+        
+        let total: Float = Float(data.count)
+        print("\(upperLeft / total), \(upperRight / total), \(lowerLeft / total), \(lowerRight / total)")
+        
+        let quadPercentages = [upperLeft / total, upperRight / total, lowerLeft / total, lowerRight / total]
+        
+        // upperLeft
+        if quadPercentages[0] < 0.15 {
+            self.topLeft.layer.backgroundColor = UIColor.green.cgColor
+        } else if quadPercentages[0] < 0.33 {
+            self.topLeft.layer.backgroundColor = UIColor.yellow.cgColor
+        } else {
+            self.topLeft.layer.backgroundColor = UIColor.red.cgColor
+        }
+        
+        // upperRight
+        if quadPercentages[1] < 0.15 {
+            self.topRight.layer.backgroundColor = UIColor.green.cgColor
+        } else if quadPercentages[1] < 0.33 {
+            self.topRight.layer.backgroundColor = UIColor.yellow.cgColor
+        } else {
+            self.topRight.layer.backgroundColor = UIColor.red.cgColor
+        }
+        
+        // lowerLeft
+        if quadPercentages[2] < 0.15 {
+            self.bottomLeft.layer.backgroundColor = UIColor.green.cgColor
+        } else if quadPercentages[2] < 0.33 {
+            self.bottomLeft.layer.backgroundColor = UIColor.yellow.cgColor
+        } else {
+            self.bottomLeft.layer.backgroundColor = UIColor.red.cgColor
+        }
+        
+        // lowerRight
+        if quadPercentages[3] < 0.15 {
+            self.bottomRight.layer.backgroundColor = UIColor.green.cgColor
+        } else if quadPercentages[3] < 0.33 {
+            self.bottomRight.layer.backgroundColor = UIColor.yellow.cgColor
+        } else {
+            self.bottomRight.layer.backgroundColor = UIColor.red.cgColor
+        }
+        
+        
+    }
 }
 
 
