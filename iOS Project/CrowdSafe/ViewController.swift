@@ -197,6 +197,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 uniqueOccupantData.append(each)
             }
         }
+        print("uniqueOccData: \(uniqueOccupantData)")
         return uniqueOccupantData
     }
     
@@ -207,6 +208,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         for row in data {
             heightSum += Int(row[8])!
         }
+        print("DATA: \(data)")
         return heightSum / data.count
     }
     
