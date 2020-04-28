@@ -3,20 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180B5DD4AC86483EC386FF85 /* Pods_CrowdSafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520C9DAB3C544DF2C8D5A28F /* Pods_CrowdSafe.framework */; };
+		A211123A24552CD9007D59C2 /* day_six_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A211123924552CD9007D59C2 /* day_six_final.csv */; };
+		A211123C2455537E007D59C2 /* day_three_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A211123B2455537E007D59C2 /* day_three_final.csv */; };
 		A23EDEF9241981420018258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EDEF8241981420018258C /* AppDelegate.swift */; };
 		A23EDEFB241981420018258C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EDEFA241981420018258C /* SceneDelegate.swift */; };
 		A23EDEFD241981420018258C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EDEFC241981420018258C /* ViewController.swift */; };
 		A23EDF00241981420018258C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EDEFE241981420018258C /* Main.storyboard */; };
 		A23EDF02241981440018258C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23EDF01241981440018258C /* Assets.xcassets */; };
 		A23EDF05241981440018258C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EDF03241981440018258C /* LaunchScreen.storyboard */; };
-		A29181E8241F36DE00B2E85F /* occupancy_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = A29181E7241F36DE00B2E85F /* occupancy_data.csv */; };
+		A254E04C2442ECBD00F2429D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A254E04B2442ECBD00F2429D /* GoogleService-Info.plist */; };
+		A2FA76E62457B9E800376FAB /* day_zero_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A2FA76E52457B9E800376FAB /* day_zero_final.csv */; };
+		A2FA76E82457B9F000376FAB /* day_one_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A2FA76E72457B9F000376FAB /* day_one_final.csv */; };
+		A2FA76EA2457B9F600376FAB /* day_two_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A2FA76E92457B9F600376FAB /* day_two_final.csv */; };
+		A2FA76EC2457B9FF00376FAB /* day_four_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A2FA76EB2457B9FF00376FAB /* day_four_final.csv */; };
+		A2FA76EE2457BA0500376FAB /* day_five_final.csv in Resources */ = {isa = PBXBuildFile; fileRef = A2FA76ED2457BA0500376FAB /* day_five_final.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520C9DAB3C544DF2C8D5A28F /* Pods_CrowdSafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdSafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A211123924552CD9007D59C2 /* day_six_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_six_final.csv; sourceTree = "<group>"; };
+		A211123B2455537E007D59C2 /* day_three_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_three_final.csv; sourceTree = "<group>"; };
 		A23EDEF5241981420018258C /* CrowdSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A23EDEF8241981420018258C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A23EDEFA241981420018258C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +36,14 @@
 		A23EDF01241981440018258C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A23EDF04241981440018258C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23EDF06241981440018258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A29181E7241F36DE00B2E85F /* occupancy_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = occupancy_data.csv; sourceTree = "<group>"; };
+		A254E04B2442ECBD00F2429D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2FA76E52457B9E800376FAB /* day_zero_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_zero_final.csv; sourceTree = "<group>"; };
+		A2FA76E72457B9F000376FAB /* day_one_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_one_final.csv; sourceTree = "<group>"; };
+		A2FA76E92457B9F600376FAB /* day_two_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_two_final.csv; sourceTree = "<group>"; };
+		A2FA76EB2457B9FF00376FAB /* day_four_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_four_final.csv; sourceTree = "<group>"; };
+		A2FA76ED2457BA0500376FAB /* day_five_final.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day_five_final.csv; sourceTree = "<group>"; };
+		C3E2373920A34DDB86E7F173 /* Pods-CrowdSafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdSafe.debug.xcconfig"; path = "Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe.debug.xcconfig"; sourceTree = "<group>"; };
+		F9EE63BE8D95F1F8FA9CEAA3 /* Pods-CrowdSafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdSafe.release.xcconfig"; path = "Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +51,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180B5DD4AC86483EC386FF85 /* Pods_CrowdSafe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16BCA0402972640B7981E86E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3E2373920A34DDB86E7F173 /* Pods-CrowdSafe.debug.xcconfig */,
+				F9EE63BE8D95F1F8FA9CEAA3 /* Pods-CrowdSafe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A23EDEEC241981420018258C = {
 			isa = PBXGroup;
 			children = (
 				A23EDEF7241981420018258C /* CrowdSafe */,
 				A23EDEF6241981420018258C /* Products */,
+				16BCA0402972640B7981E86E /* Pods */,
+				EF35D8E3041B869F86564BB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,12 +92,35 @@
 				A23EDEFA241981420018258C /* SceneDelegate.swift */,
 				A23EDEFC241981420018258C /* ViewController.swift */,
 				A23EDEFE241981420018258C /* Main.storyboard */,
+				A2FA76EF2457BA1000376FAB /* Data */,
 				A23EDF01241981440018258C /* Assets.xcassets */,
 				A23EDF03241981440018258C /* LaunchScreen.storyboard */,
 				A23EDF06241981440018258C /* Info.plist */,
-				A29181E7241F36DE00B2E85F /* occupancy_data.csv */,
+				A254E04B2442ECBD00F2429D /* GoogleService-Info.plist */,
 			);
 			path = CrowdSafe;
+			sourceTree = "<group>";
+		};
+		A2FA76EF2457BA1000376FAB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A2FA76E52457B9E800376FAB /* day_zero_final.csv */,
+				A2FA76E72457B9F000376FAB /* day_one_final.csv */,
+				A2FA76E92457B9F600376FAB /* day_two_final.csv */,
+				A211123B2455537E007D59C2 /* day_three_final.csv */,
+				A2FA76EB2457B9FF00376FAB /* day_four_final.csv */,
+				A2FA76ED2457BA0500376FAB /* day_five_final.csv */,
+				A211123924552CD9007D59C2 /* day_six_final.csv */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		EF35D8E3041B869F86564BB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				520C9DAB3C544DF2C8D5A28F /* Pods_CrowdSafe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +130,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A23EDF09241981440018258C /* Build configuration list for PBXNativeTarget "CrowdSafe" */;
 			buildPhases = (
+				E4B0485B87145DB05EE3A6D5 /* [CP] Check Pods Manifest.lock */,
 				A23EDEF1241981420018258C /* Sources */,
 				A23EDEF2241981420018258C /* Frameworks */,
 				A23EDEF3241981420018258C /* Resources */,
+				50FB62D52AB0B0004DA5E814 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +185,61 @@
 			files = (
 				A23EDF05241981440018258C /* LaunchScreen.storyboard in Resources */,
 				A23EDF02241981440018258C /* Assets.xcassets in Resources */,
-				A29181E8241F36DE00B2E85F /* occupancy_data.csv in Resources */,
+				A211123C2455537E007D59C2 /* day_three_final.csv in Resources */,
+				A2FA76E82457B9F000376FAB /* day_one_final.csv in Resources */,
 				A23EDF00241981420018258C /* Main.storyboard in Resources */,
+				A2FA76EA2457B9F600376FAB /* day_two_final.csv in Resources */,
+				A2FA76EC2457B9FF00376FAB /* day_four_final.csv in Resources */,
+				A211123A24552CD9007D59C2 /* day_six_final.csv in Resources */,
+				A254E04C2442ECBD00F2429D /* GoogleService-Info.plist in Resources */,
+				A2FA76E62457B9E800376FAB /* day_zero_final.csv in Resources */,
+				A2FA76EE2457BA0500376FAB /* day_five_final.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50FB62D52AB0B0004DA5E814 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4B0485B87145DB05EE3A6D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CrowdSafe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A23EDEF1241981420018258C /* Sources */ = {
@@ -286,6 +390,7 @@
 		};
 		A23EDF0A241981440018258C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3E2373920A34DDB86E7F173 /* Pods-CrowdSafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -304,6 +409,7 @@
 		};
 		A23EDF0B241981440018258C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9EE63BE8D95F1F8FA9CEAA3 /* Pods-CrowdSafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

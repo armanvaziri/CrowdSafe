@@ -8,28 +8,75 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    @IBOutlet var locationLabel: UILabel!
-    @IBOutlet var occupantCountLabel: UILabel!
-
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var occupantCountLabel: UILabel!
+    @IBOutlet weak var occupantHeightLabel: UILabel!
+    
+    @IBOutlet weak var topLeft: UIButton!
+    @IBOutlet weak var bottomLeft: UIButton!
+    @IBOutlet weak var topRight: UIButton!
+    @IBOutlet weak var bottomRight: UIButton!
+    
+    
+    @IBOutlet weak var mostDense: UIButton!
+    @IBOutlet weak var mildlyDense: UIButton!
+    @IBOutlet weak var leastDense: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let currentData = timeMatchData()
+        let uniqueOccData = uniqueOccupantData(data: currentData)
+        let averageOccHeight = occupantAverageHeight(data: uniqueOccData)
+        
+        timeLabel.text = currentTimeString()
+        occupantCountLabel.text = "Occupant count: \(uniqueOccData.count)"
+        occupantHeightLabel.text = "Avg. occupant height: \(averageOccHeight)mm"
 
-        updateUI()
+//        basicUISetup()
         
     }
+    
+    func basicUISetup()  {
+        
+        navigationController?.navigationBar.barTintColor = UIColor.systemBlue
+        
+        topLeft.layer.cornerRadius = topLeft.frame.height / 2
+        topRight.layer.cornerRadius = topRight.frame.height / 2
+        bottomLeft.layer.cornerRadius = bottomLeft.frame.height / 2
+        bottomRight.layer.cornerRadius = bottomRight.frame.height / 2
+        mostDense.layer.cornerRadius = mostDense.frame.height / 2
+        mildlyDense.layer.cornerRadius = mildlyDense.frame.height / 2
+        leastDense.layer.cornerRadius = leastDense.frame.height / 2
+        
+        topLeft.layer.backgroundColor = UIColor.red.cgColor
+        topRight.layer.backgroundColor = UIColor.yellow.cgColor
+        bottomLeft.layer.backgroundColor = UIColor.green.cgColor
+        bottomRight.layer.backgroundColor = UIColor.green.cgColor
+        
+    }
+    
+    /* Order of operations:
+        1. read csv file according to today's day of the week
+        2. iterate through and find rows that match the hour and minute
+        3. iterate through and obtain one row per unique occupant
+        4. count the number of unique occupants and average their heights
+        5. use x-y coordinates of unique occupant data to determine density in room
+     */
     
     func updateUI() {
-        let occupantCount: Int = uniqueOccupantData(file: "occupancy_data").count
-        let averageHeight = occupantAverageHeight(file: "occupancy_data")
-        occupantCountLabel.text = "occupant count: \(occupantCount)"
-        locationLabel.text = "average height of occupants: \(averageHeight) mm"
+        
+        
+
     }
     
-    func readData(file fileName: String) -> [[String]] {
+    func readCsvData(file fileName: String) -> [[String]] {
         
         var result: [[String]] = []
+        
         let dataFileURL: String? = Bundle.main.path(forResource: fileName, ofType: "csv")
         guard (dataFileURL as? String) != nil else { return result}
             
@@ -50,53 +97,102 @@ class ViewController: UIViewController {
         return result
     }
     
-    func uniqueOccupantData(file fileName: String) -> [[String]] {
-        let data = readData(file: fileName)
+    func timeMatchData() -> [[String]] {
+        
+        var toReturn: [[String]] = []
+        
+        let date = Date()
+        let calendar = Calendar(identifier: .iso8601)
+        let today = calendar.component(.weekday, from: date)
+        
+        var data: [[String]] = []
+        
+        switch today {
+        case 0:
+            data = readCsvData(file: "day_zero_final")
+        case 1:
+            data = readCsvData(file: "day_one_final")
+        case 2:
+            data = readCsvData(file: "day_two_final")
+        case 3:
+            data = readCsvData(file: "day_three_final")
+        case 4:
+            data = readCsvData(file: "day_four_final")
+        case 5:
+            data = readCsvData(file: "day_five_final")
+        case 6:
+            data = readCsvData(file: "day_six_final")
+        default:
+            break
+        }
+        
+        var counter = 1
+        while counter < data.count - 1 {
+            
+            let time = data[counter][1]
+            let lowerBound = String.Index.init(encodedOffset: 0)
+            let upperBound = String.Index.init(encodedOffset: 5)
+            let hourUpperBound = String.Index.init(encodedOffset: 2)
+            let minuteLowerBound = String.Index.init(encodedOffset: 3)
+
+            let timeSubstring: Substring = time[lowerBound..<upperBound]
+            let hourSubstring: Substring = time[lowerBound..<hourUpperBound]
+            let minuteSubstring: Substring = time[minuteLowerBound..<upperBound]
+            
+            // check if data's hour and minute are equivalent to current
+            let currentHour = calendar.component(.hour, from: date)
+            let currentMinute = calendar.component(.minute, from: date)
+            
+            if minuteSubstring == String(currentMinute) {
+                toReturn.append(data[counter])
+                print("TIME ADDED: \(timeSubstring)")
+            }
+            
+            counter += 1
+        }
+        
+        return toReturn
+    }
+    
+    func uniqueOccupantData(data: [[String]]) -> [[String]] {
         
         var uniqueOccupantID: [String] = []
         var uniqueOccupantData: [[String]] = []
         
-        for row in data {
-            if uniqueOccupantID.count == 0 || !(uniqueOccupantID.contains(row[6])) {
-                uniqueOccupantID.append(row[6])
-                uniqueOccupantData.append(row)
+        for each in data {
+            if uniqueOccupantID.count == 0 || !(uniqueOccupantID.contains(each[6])) {
+                uniqueOccupantID.append(each[6])
+                uniqueOccupantData.append(each)
             }
         }
-        print("number of unique occupants: ", uniqueOccupantData.count)
         return uniqueOccupantData
     }
     
-    func occupantAverageHeight(file fileName: String) -> Int {
-        let uniqueOccupants = uniqueOccupantData(file: fileName)
+    func occupantAverageHeight(data: [[String]]) -> Int {
     
         var heightSum = 0
         
-        for row in uniqueOccupants {
+        for row in data {
             heightSum += Int(row[7])!
         }
-        return heightSum / uniqueOccupants.count
+        return heightSum / data.count
     }
     
-    func timeParsedData(time: String) -> Date {
-        var toReturn: [[String]] = []
-        let currTime = currentTime()
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "HH:mm:ssZ"
-        let date = dateFormatter.date(from: time)
-    
-        return date!
-    }
-    
-    func currentTime() -> String {
+    func currentTimeString() -> String {
         let date = Date()
         let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
+        var hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        return "\(hour):\(minutes)"
+        
+        if hour < 12 {
+            return "\(hour):\(minutes) am"
+        } else {
+            hour = hour - 12
+            return "\(hour):\(minutes) pm"
+        }
+    
     }
 
-
 }
+
 
