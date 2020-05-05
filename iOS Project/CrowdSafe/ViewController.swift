@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var occupantCountLabel: UILabel!
     @IBOutlet weak var occupantHeightLabel: UILabel!
+    @IBOutlet weak var exitPlanButton: UIButton!
     
     @IBOutlet weak var topLeft: UIButton!
     @IBOutlet weak var bottomLeft: UIButton!
@@ -36,7 +36,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let uniqueOccData = uniqueOccupantData(data: currentData)
         let averageOccHeight = occupantAverageHeight(data: uniqueOccData)
         
-        timeLabel.text = currentTimeString()
         occupantCountLabel.text = "Occupant count: \(uniqueOccData.count)"
         occupantHeightLabel.text = "Avg. occupant height: \(averageOccHeight)mm"
         
@@ -72,7 +71,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func basicUISetup()  {
         
-        navigationController?.navigationBar.barTintColor = UIColor.systemBlue
+//        navigationController?.navigationBar.barTintColor = UIColor.systemBlue
         
         topLeft.layer.cornerRadius = topLeft.frame.height / 2
         topRight.layer.cornerRadius = topRight.frame.height / 2
@@ -81,6 +80,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         mostDense.layer.cornerRadius = mostDense.frame.height / 2
         mildlyDense.layer.cornerRadius = mildlyDense.frame.height / 2
         leastDense.layer.cornerRadius = leastDense.frame.height / 2
+        exitPlanButton.layer.cornerRadius = exitPlanButton.frame.height / 2
         
     }
     
@@ -175,8 +175,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let currentHour = calendar.component(.hour, from: date)
             let currentMinute = calendar.component(.minute, from: date)
             
-            // Add hour check here
-            if minuteSubstring == String(currentMinute) {
+            // Use hour check for live-like feature
+//            if minuteSubstring == String(currentMinute) {
+//                toReturn.append(data[counter])
+//            }
+            
+             if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
                 toReturn.append(data[counter])
             }
             
@@ -210,20 +214,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
         print("DATA: \(data)")
         return heightSum / data.count
-    }
-    
-    func currentTimeString() -> String {
-        let date = Date()
-        let calendar = Calendar.current
-        var hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        
-        if hour < 12 {
-            return "\(hour):\(minutes) am"
-        } else {
-            hour = hour - 12
-            return "\(hour):\(minutes) pm"
-        }
     }
     
     func quadrantDensity(data: [[String]]) {
@@ -264,7 +254,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         let total: Float = Float(data.count)
-        print("\(upperLeft / total), \(upperRight / total), \(lowerLeft / total), \(lowerRight / total)")
         
         let quadPercentages = [upperLeft / total, upperRight / total, lowerLeft / total, lowerRight / total]
         
@@ -304,7 +293,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             self.bottomRight.layer.backgroundColor = UIColor.red.cgColor
         }
         
-        
+        self.topLeft.layer.opacity = 0.65
+        self.topRight.layer.opacity = 0.65
+        self.bottomLeft.layer.opacity = 0.65
+        self.bottomRight.layer.opacity = 0.65
+
     }
 }
 
