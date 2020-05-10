@@ -84,20 +84,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
     }
     
-    /* Order of operations:
-        1. read csv file according to today's day of the week
-        2. iterate through and find rows that match the hour and minute
-        3. iterate through and obtain one row per unique occupant
-        4. count the number of unique occupants and average their heights
-        5. use x-y coordinates of unique occupant data to determine density in room
-     */
-    
-    func updateUI() {
-        
-        
-
-    }
-    
     func readCsvData(file fileName: String) -> [[String]] {
         
         var result: [[String]] = []
@@ -129,31 +115,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let date = Date()
         let calendar = Calendar(identifier: .iso8601)
         let today = calendar.component(.weekday, from: date)
+        print("TODAY: \(today)")
         
         var data: [[String]] = []
         
         switch today {
-        case 0:
-            data = readCsvData(file: "day_zero_final")
-            print("DAY 0")
         case 1:
-            data = readCsvData(file: "day_one_final")
-            print("DAY 1")
+            data = readCsvData(file: "day_zero_final")
+            print("SUNDAY: DAY 1")
         case 2:
-            data = readCsvData(file: "day_two_final")
-            print("DAY 2")
+            data = readCsvData(file: "day_one_final")
+            print("MONDAY: DAY 2")
         case 3:
-            data = readCsvData(file: "day_three_final")
-            print("DAY 3")
+            data = readCsvData(file: "day_two_final")
+            print("TUESDAY: DAY 3")
         case 4:
-            data = readCsvData(file: "day_four_final")
-            print("DAY 4")
+            data = readCsvData(file: "day_three_final")
+            print("WEDNESDAY: DAY 4")
         case 5:
-            data = readCsvData(file: "day_five_final")
-            print("DAY 5")
+            data = readCsvData(file: "day_four_final")
+            print("THURSDAY: DAY 5")
         case 6:
+            data = readCsvData(file: "day_five_final")
+            print("FRIDAY: DAY 6")
+        case 7:
             data = readCsvData(file: "day_six_final")
-            print("DAY 6")
+            print("SATURDAY: DAY 7")
         default:
             break
         }
@@ -175,15 +162,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let currentHour = calendar.component(.hour, from: date)
             let currentMinute = calendar.component(.minute, from: date)
             
-            // Use hour check for live-like feature
-//            if minuteSubstring == String(currentMinute) {
-//                toReturn.append(data[counter])
-//            }
-            
              if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
                 toReturn.append(data[counter])
             }
-            
             counter += 1
         }
         
@@ -195,13 +176,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         var uniqueOccupantID: [String] = []
         var uniqueOccupantData: [[String]] = []
         
-        for each in data {
-            if uniqueOccupantID.count == 0 || !(uniqueOccupantID.contains(each[6])) {
-                uniqueOccupantID.append(each[6])
-                uniqueOccupantData.append(each)
+        if data.count != 0 {
+            for each in data {
+                if uniqueOccupantID.count == 0 || !(uniqueOccupantID.contains(each[6])) {
+                    uniqueOccupantID.append(each[6])
+                    uniqueOccupantData.append(each)
+                }
             }
+            print("uniqueOccData: \(uniqueOccupantData)")
+            return uniqueOccupantData
         }
-        print("uniqueOccData: \(uniqueOccupantData)")
+        
         return uniqueOccupantData
     }
     
@@ -209,10 +194,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
         var heightSum = 0
         
+        if data.count == 0 {
+            return 0
+        }
+        
         for row in data {
             heightSum += Int(row[8])!
         }
-        print("DATA: \(data)")
         return heightSum / data.count
     }
     
@@ -223,39 +211,57 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         var lowerLeft: Float = 0.0
         var lowerRight: Float = 0.0
         
-        for each in data {
-            
-            let x = Float(each[5])!
-            let y = Float(each[6])!
+        if data.count == 0 {
+            assignQuadEmpty()
+        } else {
+            for each in data {
+                
+                let x = Float(each[5])!
+                let y = Float(each[6])!
 
-            print(x)
-            print(y)
+                //topLeft
+                if x < 250 && y < 155 {
+                    upperLeft += 1
+                    self.topLeftCount += 1
+                }
+                //bottomLeft
+                else if x < 250 && y >= 155 {
+                    lowerLeft += 1
+                    self.bottomLeftCount += 1
+                }
+                //topRight
+                else if x >= 250 && y < 155 {
+                    upperRight += 1
+                    self.topRightCount += 1
+                }
+                //bottomRight
+                else if x >= 250 && y >= 155 {
+                    lowerRight += 1
+                    self.bottomRightCount += 1
+                }
+            }
             
-            //topLeft
-            if x < 250 && y < 155 {
-                upperLeft += 1
-                self.topLeftCount += 1
-            }
-            //bottomLeft
-            else if x < 250 && y >= 155 {
-                lowerLeft += 1
-                self.bottomLeftCount += 1
-            }
-            //topRight
-            else if x >= 250 && y < 155 {
-                upperRight += 1
-                self.topRightCount += 1
-            }
-            //bottomRight
-            else if x >= 250 && y >= 155 {
-                lowerRight += 1
-                self.bottomRightCount += 1
-            }
+            let total: Float = Float(data.count)
+
+            let quadPercentages = [upperLeft / total, upperRight / total, lowerLeft / total, lowerRight / total]
+            print("QUAD PERCENTAGES: \(quadPercentages)")
+            assignQuadColors(quadPercentages: quadPercentages)
         }
+    }
+    
+    func assignQuadEmpty() {
         
-        let total: Float = Float(data.count)
-        
-        let quadPercentages = [upperLeft / total, upperRight / total, lowerLeft / total, lowerRight / total]
+        self.topLeft.layer.backgroundColor = UIColor.green.cgColor
+        self.topRight.layer.backgroundColor = UIColor.green.cgColor
+        self.bottomLeft.layer.backgroundColor = UIColor.green.cgColor
+        self.bottomRight.layer.backgroundColor = UIColor.green.cgColor
+        self.topLeft.layer.opacity = 0.65
+        self.topRight.layer.opacity = 0.65
+        self.bottomLeft.layer.opacity = 0.65
+        self.bottomRight.layer.opacity = 0.65
+    }
+    
+    func assignQuadColors(quadPercentages: [Float]) {
         
         // upperLeft
         if quadPercentages[0] < 0.15 {
@@ -297,8 +303,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.topRight.layer.opacity = 0.65
         self.bottomLeft.layer.opacity = 0.65
         self.bottomRight.layer.opacity = 0.65
-
+        
     }
+    
 }
 
 

@@ -181,6 +181,9 @@
                                 <state key="normal" title="Gym" backgroundImage="gym">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="OoV-AN-Kgn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-DU-bQl">
                                 <rect key="frame" x="20" y="338" width="375" height="100"/>
@@ -190,6 +193,9 @@
                                 <state key="normal" title="Library" backgroundImage="library">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="bHK-VQ-EEh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg6-7p-fSQ">
                                 <rect key="frame" x="21" y="498" width="374" height="100"/>
@@ -246,4 +252,7 @@
         <image name="library" width="184" height="123"/>
         <image name="map" width="634" height="468"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OoV-AN-Kgn"/>
+    </inferredMetricsTieBreakers>
 </document>
