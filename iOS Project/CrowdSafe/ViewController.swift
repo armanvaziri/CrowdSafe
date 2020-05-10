@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -28,9 +29,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     var topRightCount = 0
     var bottomRightCount = 0
     
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshApp()
+        
+        timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshApp), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func refreshApp() {
+        
+        print("REFRESHING APP")
         
         let currentData = timeMatchData()
         let uniqueOccData = uniqueOccupantData(data: currentData)
@@ -70,9 +82,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     func basicUISetup()  {
-        
-//        navigationController?.navigationBar.barTintColor = UIColor.systemBlue
-        
+                
         topLeft.layer.cornerRadius = topLeft.frame.height / 2
         topRight.layer.cornerRadius = topRight.frame.height / 2
         bottomLeft.layer.cornerRadius = bottomLeft.frame.height / 2
@@ -144,7 +154,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         default:
             break
         }
-        
+                
         var counter = 1
         while counter < data.count - 1 {
             
@@ -162,9 +172,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let currentHour = calendar.component(.hour, from: date)
             let currentMinute = calendar.component(.minute, from: date)
             
-             if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
+//            if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
+//                toReturn.append(data[counter])
+//            }
+            if minuteSubstring == String(currentMinute) {
                 toReturn.append(data[counter])
             }
+            
             counter += 1
         }
         
@@ -244,7 +258,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let total: Float = Float(data.count)
 
             let quadPercentages = [upperLeft / total, upperRight / total, lowerLeft / total, lowerRight / total]
-            print("QUAD PERCENTAGES: \(quadPercentages)")
             assignQuadColors(quadPercentages: quadPercentages)
         }
     }
