@@ -125,32 +125,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let date = Date()
         let calendar = Calendar(identifier: .iso8601)
         let today = calendar.component(.weekday, from: date)
-        print("TODAY: \(today)")
         
         var data: [[String]] = []
         
         switch today {
         case 1:
             data = readCsvData(file: "day_zero_final")
-            print("SUNDAY: DAY 1")
         case 2:
             data = readCsvData(file: "day_one_final")
-            print("MONDAY: DAY 2")
         case 3:
             data = readCsvData(file: "day_two_final")
-            print("TUESDAY: DAY 3")
         case 4:
             data = readCsvData(file: "day_three_final")
-            print("WEDNESDAY: DAY 4")
         case 5:
             data = readCsvData(file: "day_four_final")
-            print("THURSDAY: DAY 5")
         case 6:
             data = readCsvData(file: "day_five_final")
-            print("FRIDAY: DAY 6")
         case 7:
             data = readCsvData(file: "day_six_final")
-            print("SATURDAY: DAY 7")
         default:
             break
         }
@@ -197,7 +189,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                     uniqueOccupantData.append(each)
                 }
             }
-            print("uniqueOccData: \(uniqueOccupantData)")
             return uniqueOccupantData
         }
         
