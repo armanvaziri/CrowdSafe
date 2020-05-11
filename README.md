@@ -5,7 +5,7 @@ Requirements:
 - The latest version of Xcode 
 
 *Important Details*:
-Our dataset tracked occupants within a building from 8:00 am - 9:00 pm on weekdays and 10:00 am - 4:00 pm on weekends. Therefore, running our application outside of these time frames will definitely result in an empty room with 0 occupants. For best results in viewing the live capabilities of our application, please run our application within these time frames. Thanks.
+- Our dataset tracked occupants within a building from 8:00 am - 9:00 pm on weekdays and 10:00 am - 4:00 pm on weekends. Therefore, running our application outside of these time frames will definitely result in an empty room with 0 occupants. For best results in viewing the live capabilities of our application, please run our application within these time frames. Thanks.
 
 Instructions: 
 1. Navigate to the “iOS Project” directory in our repo
