@@ -44,9 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        print("ANNOTATIONVIEW SET UP")
-        
+                
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Crossroads")
         annotationView.isEnabled = true
         annotationView.canShowCallout = true
@@ -57,9 +55,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        print("ANNOTATIONVIEW TAPPED")
-        
+                
         performSegue(withIdentifier: "mapToMain", sender: view)
         
     }

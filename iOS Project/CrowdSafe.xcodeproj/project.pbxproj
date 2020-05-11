@@ -137,7 +137,6 @@
 				A23EDEF1241981420018258C /* Sources */,
 				A23EDEF2241981420018258C /* Frameworks */,
 				A23EDEF3241981420018258C /* Resources */,
-				50FB62D52AB0B0004DA5E814 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,23 +202,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50FB62D52AB0B0004DA5E814 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrowdSafe/Pods-CrowdSafe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4B0485B87145DB05EE3A6D5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -113,6 +113,15 @@
                                     <action selector="topRightPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Msd-Bd-40U"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKe-Ak-PzK">
+                                <rect key="frame" x="327" y="101" width="67" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vXp-fP-7dU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -127,6 +136,7 @@
                         <outlet property="mostDense" destination="7mY-Ni-MlW" id="x7X-p8-hwG"/>
                         <outlet property="occupantCountLabel" destination="7Eh-By-tCS" id="oHT-dY-RcX"/>
                         <outlet property="occupantHeightLabel" destination="mhT-Jb-0TL" id="Wni-hl-xUX"/>
+                        <outlet property="refreshButton" destination="FKe-Ak-PzK" id="gnR-WK-GMt"/>
                         <outlet property="topLeft" destination="rbr-aw-543" id="U3j-9d-u2K"/>
                         <outlet property="topRight" destination="L21-nN-JdP" id="ek0-iP-c0f"/>
                     </connections>

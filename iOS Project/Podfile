@@ -7,11 +7,5 @@ target 'CrowdSafe' do
 
   # Pods for CrowdSafe
 
-	# Firebase pods
-	pod 'Firebase/Analytics'
-	pod 'Firebase/Auth'
-	pod 'Firebase/Core'
-	pod 'Firebase/Firestore'
-
 
 end

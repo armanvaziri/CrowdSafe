@@ -14,6 +14,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var occupantCountLabel: UILabel!
     @IBOutlet weak var occupantHeightLabel: UILabel!
     @IBOutlet weak var exitPlanButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     
     @IBOutlet weak var topLeft: UIButton!
     @IBOutlet weak var bottomLeft: UIButton!
@@ -34,6 +35,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        basicUISetup()
         refreshApp()
         
         timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshApp), userInfo: nil, repeats: true)
@@ -52,9 +54,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         occupantHeightLabel.text = "Avg. occupant height: \(averageOccHeight)mm"
         
         quadrantDensity(data: uniqueOccData)
-        basicUISetup()
         
     }
+    
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+        
+        print("REFRESH BUTTON PRESSED")
+        refreshApp()
+        
+    }
+    
     
     @IBAction func topLeftPressed(_ sender: Any) {
         let alertController = UIAlertController(title: "\(topLeftCount) occupants", message: "", preferredStyle: .alert)
@@ -92,10 +101,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         leastDense.layer.cornerRadius = leastDense.frame.height / 2
         exitPlanButton.layer.cornerRadius = exitPlanButton.frame.height / 2
         
+        self.topLeft.layer.opacity = 0.65
+        self.topRight.layer.opacity = 0.65
+        self.bottomLeft.layer.opacity = 0.65
+        self.bottomRight.layer.opacity = 0.65
+        
     }
     
     func readCsvData(file fileName: String) -> [[String]] {
-        
+            
         var result: [[String]] = []
         
         let dataFileURL: String? = Bundle.main.path(forResource: fileName, ofType: "csv")
@@ -126,25 +140,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let calendar = Calendar(identifier: .iso8601)
         let today = calendar.component(.weekday, from: date)
         
-        var data: [[String]] = []
+        var data: [[String]]
         
         switch today {
         case 1:
+            print("DAY 1")
             data = readCsvData(file: "day_zero_final")
         case 2:
+            print("DAY 2")
             data = readCsvData(file: "day_one_final")
         case 3:
+            print("DAY 3")
             data = readCsvData(file: "day_two_final")
         case 4:
+            print("DAY 4")
             data = readCsvData(file: "day_three_final")
         case 5:
+            print("DAY 5")
             data = readCsvData(file: "day_four_final")
         case 6:
+            print("DAY 6")
             data = readCsvData(file: "day_five_final")
         case 7:
+            print("DAY 7")
             data = readCsvData(file: "day_six_final")
         default:
-            break
+            data = readCsvData(file: "day_two_final")
         }
                 
         var counter = 1
@@ -173,7 +194,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             
             counter += 1
         }
-        
         return toReturn
     }
     
@@ -191,7 +211,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             }
             return uniqueOccupantData
         }
-        
+        print("UNIQUE OCCUPANT DATA: \(uniqueOccupantData)")
         return uniqueOccupantData
     }
     
