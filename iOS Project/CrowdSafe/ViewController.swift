@@ -46,6 +46,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         print("REFRESHING APP")
         
+        topLeftCount = 0
+        bottomLeftCount = 0
+        topRightCount = 0
+        bottomRightCount = 0
+        
         let currentData = timeMatchData()
         let uniqueOccData = uniqueOccupantData(data: currentData)
         let averageOccHeight = occupantAverageHeight(data: uniqueOccData)
@@ -144,25 +149,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         switch today {
         case 1:
-            print("DAY 1")
             data = readCsvData(file: "day_zero_final")
         case 2:
-            print("DAY 2")
             data = readCsvData(file: "day_one_final")
         case 3:
-            print("DAY 3")
             data = readCsvData(file: "day_two_final")
         case 4:
-            print("DAY 4")
             data = readCsvData(file: "day_three_final")
         case 5:
-            print("DAY 5")
             data = readCsvData(file: "day_four_final")
         case 6:
-            print("DAY 6")
             data = readCsvData(file: "day_five_final")
         case 7:
-            print("DAY 7")
             data = readCsvData(file: "day_six_final")
         default:
             data = readCsvData(file: "day_two_final")
@@ -185,12 +183,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             let currentHour = calendar.component(.hour, from: date)
             let currentMinute = calendar.component(.minute, from: date)
             
-//            if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
-//                toReturn.append(data[counter])
-//            }
-            if minuteSubstring == String(currentMinute) {
+            if minuteSubstring == String(currentMinute) && hourSubstring == String(currentHour) {
                 toReturn.append(data[counter])
             }
+//            if minuteSubstring == String(currentMinute) {
+//                toReturn.append(data[counter])
+//            }
             
             counter += 1
         }
@@ -211,7 +209,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             }
             return uniqueOccupantData
         }
-        print("UNIQUE OCCUPANT DATA: \(uniqueOccupantData)")
         return uniqueOccupantData
     }
     
